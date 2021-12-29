@@ -25,8 +25,8 @@ jobs:
         working-directory: ./web-client
         run: npm run build
 
-      - name: Move web-client build output to server/react-spring-postgresql/target/classes/static directory
-        run: mv web-client/build server/react-spring-postgresql/target/classes/static
+      - name: Move web-client build output to server/react-spring-postgresql/src/main/resources/static directory
+        run: mv web-client/build server/react-spring-postgresql/src/main/resources/static
 
       - name: Deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
