@@ -12,6 +12,22 @@ jobs:
       - name: Copy repository
         uses: actions/checkout@v2
 
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install npm dependencies for web-client
+        working-directory: ./web-client
+        run: npm ci
+
+      - name: Build web-client
+        working-directory: ./web-client
+        run: npm run build
+
+      - name: Move web-client build output to server/react-spring-postgresql/target/classes/static directory
+        run: mv web-client/build server/react-spring-postgresql/target/classes/static
+
       - name: Deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
