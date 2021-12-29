@@ -28,8 +28,8 @@ public class TestServiceImpl implements TestService {
     public Collection<Test> findAll() {
         var tests = new ArrayList<Test>();
 
-        tests.add(new Test(1L, "test1", false));
-        tests.add(new Test(2L, "test2", false));
+        tests.add(new Test(1L, "testttt1", false));
+        tests.add(new Test(2L, "testttt2", false));
 
         return tests;
     }
