@@ -1,1 +1,1 @@
-mv web-client/build /target/classes/static
+mv web-client-build /target/classes/static
