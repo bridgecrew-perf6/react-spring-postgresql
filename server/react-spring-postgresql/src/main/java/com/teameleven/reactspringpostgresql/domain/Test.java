@@ -1,26 +1,26 @@
 package com.teameleven.reactspringpostgresql.domain;
 
-//import javax.persistence.*;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import com.teameleven.reactspringpostgresql.dto.test.CreateTestDto;
 
-//import org.hibernate.annotations.SQLDelete;
-//import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
-//@Entity
-//@SQLDelete(sql = "UPDATE test SET deleted = true WHERE id = ?")
-//@Where(clause = "deleted = false")
+@Entity
+@SQLDelete(sql = "UPDATE test SET deleted = true WHERE id = ?")
+@Where(clause = "deleted = false")
 public class Test {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@Column(unique = true)
+    @Column(unique = true)
     @NotEmpty(message = "Name is required")
     private String name;
 
-    //@Column
+    @Column
     private boolean deleted;
 
     public Test() {
