@@ -1,8 +1,12 @@
-name: Sonarcloud
+name: Sonarcloud Scan
 
 on:
   pull_request:
     branches: [master, development]
+
+env:
+  PROJECT_KEY: 'lukamatic_react-spring-postgresql'
+  PROJECT_PATH: './server/react-spring-postgresql'
 
 jobs:
   sonarcloud:
@@ -34,8 +38,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build and analyze
-        working-directory: ./server/react-spring-postgresql
+        working-directory: ${{ env.PROJECT_PATH }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=lukamatic_react-spring-postgresql
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=${{ env.PROJECT_KEY }}
